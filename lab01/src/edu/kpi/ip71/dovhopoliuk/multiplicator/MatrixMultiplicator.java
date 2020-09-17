@@ -25,7 +25,7 @@ public class MatrixMultiplicator {
 
     public double[] multiplyParallelly() {
 
-        final int chunkSize = matrix.length / (threads - 1);
+        final int chunkSize = (int)Math.ceil((double)matrix.length / (threads));
 
         final RunnableRowMultiplicator[] threadArray = IntStream.range(0, threads)
                 .mapToObj(index -> getPart(matrix, index, chunkSize))

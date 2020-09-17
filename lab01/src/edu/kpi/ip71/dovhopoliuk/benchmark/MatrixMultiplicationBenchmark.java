@@ -21,7 +21,7 @@ public class MatrixMultiplicationBenchmark {
 
     public void doBenchmark() {
 
-        System.out.println("IP-71, Roman Dovhopoliuk, Variant #9\n");
+        System.out.println("\n-=====BENCHMARK=====-");
         System.out.println("Starting benchmark with following parameters:");
         System.out.println("Size of matrix and vector: " + size);
         System.out.println("Thread quantity: " + threadQuantity);

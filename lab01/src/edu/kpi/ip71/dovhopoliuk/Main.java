@@ -4,12 +4,21 @@ import edu.kpi.ip71.dovhopoliuk.benchmark.MatrixMultiplicationBenchmark;
 
 public class Main {
 
-    private final static int SIZE = 5000;
-    private final static int THREAD_QUANTITY = 6;
-    private final static int ITERATIONS = 100;
-
     public static void main(final String[] args) {
 
-        new MatrixMultiplicationBenchmark(SIZE, THREAD_QUANTITY, ITERATIONS).doBenchmark();
+        System.out.println("IP-71, Roman Dovhopoliuk, Variant #9\n");
+
+        new MatrixMultiplicationBenchmark(100, 3, 1000).doBenchmark();
+        new MatrixMultiplicationBenchmark(100, 6, 1000).doBenchmark();
+        new MatrixMultiplicationBenchmark(100, 12, 1000).doBenchmark();
+
+        new MatrixMultiplicationBenchmark(1000, 3, 1000).doBenchmark();
+        new MatrixMultiplicationBenchmark(1000, 6, 1000).doBenchmark();
+        new MatrixMultiplicationBenchmark(1000, 12, 1000).doBenchmark();
+
+
+        new MatrixMultiplicationBenchmark(5000, 3, 200).doBenchmark();
+        new MatrixMultiplicationBenchmark(5000, 6, 200).doBenchmark();
+        new MatrixMultiplicationBenchmark(5000, 12, 200).doBenchmark();
     }
 }

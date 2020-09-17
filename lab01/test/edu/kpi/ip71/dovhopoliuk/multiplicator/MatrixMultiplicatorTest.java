@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 
 public class MatrixMultiplicatorTest {
+
     private static final double[][] MATRIX = {{1.0, 3.0, -2.5},
             {0.0, -4.0, 9.9},
             {1.3, 0.56, 5.0}};
