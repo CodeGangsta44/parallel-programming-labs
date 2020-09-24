@@ -1,5 +1,6 @@
 package edu.kpi.ip71.dovhopoliuk.model.cpu;
 
+import edu.kpi.ip71.dovhopoliuk.model.process.Task;
 import edu.kpi.ip71.dovhopoliuk.model.queue.CPUQueue;
 
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class CPU extends Thread {
         }
     }
 
-    private Optional<Object> waitForProcess() {
+    private Optional<Task> waitForProcess() {
 
         synchronized (queue) {
             waitQueue();
@@ -45,11 +46,11 @@ public class CPU extends Thread {
         }
     }
 
-    private void handleProcess(final Object process) {
+    private void handleProcess(final Task task) {
 
         System.out.println(getName() + " - " + "handling process.");
         try {
-            Thread.sleep(executionDuration);
+            Thread.sleep(task.getDuration());
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

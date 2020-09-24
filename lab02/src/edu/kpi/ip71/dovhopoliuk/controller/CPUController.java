@@ -21,9 +21,12 @@ public class CPUController {
     private final int executionDuration;
     private final int quantityOfCores;
     private final int quantityOfProcesses;
+    private final int executionLowerLimit;
+    private final int executionUpperLimit;
 
     public CPUController(final int intervalLowerLimit, final int intervalUpperLimit, final int targetQuantityOfTasks,
-                         final int executionDuration, final int quantityOfCores, final int quantityOfProcesses) {
+                         final int executionDuration, final int quantityOfCores, final int quantityOfProcesses,
+                         final int executionLowerLimit, final int executionUpperLimit) {
 
         this.intervalLowerLimit = intervalLowerLimit;
         this.intervalUpperLimit = intervalUpperLimit;
@@ -31,6 +34,8 @@ public class CPUController {
         this.executionDuration = executionDuration;
         this.quantityOfCores = quantityOfCores;
         this.quantityOfProcesses = quantityOfProcesses;
+        this.executionLowerLimit = executionLowerLimit;
+        this.executionUpperLimit = executionUpperLimit;
     }
 
     public void executeSimulation() {
@@ -68,7 +73,7 @@ public class CPUController {
 
         return IntStream.range(0, quantityOfProcesses)
                 .mapToObj(index -> new CPUProcess(group, PROCESS_THREAD_NAME_PREFIX + index,
-                        queue, intervalLowerLimit, intervalUpperLimit, targetQuantityOfTasks))
+                        queue, intervalLowerLimit, intervalUpperLimit, targetQuantityOfTasks, executionLowerLimit, executionUpperLimit))
                 .toArray(Thread[]::new);
     }
 

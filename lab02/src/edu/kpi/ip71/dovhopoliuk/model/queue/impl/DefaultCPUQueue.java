@@ -1,5 +1,6 @@
 package edu.kpi.ip71.dovhopoliuk.model.queue.impl;
 
+import edu.kpi.ip71.dovhopoliuk.model.process.Task;
 import edu.kpi.ip71.dovhopoliuk.model.queue.CPUQueue;
 
 import java.util.ArrayDeque;
@@ -8,11 +9,11 @@ import java.util.Queue;
 
 public class DefaultCPUQueue implements CPUQueue {
 
-    private final Queue<Object> queue = new ArrayDeque<>();
+    private final Queue<Task> queue = new ArrayDeque<>();
     private int maxQueueSize = 0;
 
     @Override
-    public synchronized void putProcess(final Object object) {
+    public synchronized void putProcess(final Task object) {
 
         System.out.println("PUT into queue");
 
@@ -22,7 +23,7 @@ public class DefaultCPUQueue implements CPUQueue {
     }
 
     @Override
-    public synchronized Optional<Object> getProcess() {
+    public synchronized Optional<Task> getProcess() {
 
         System.out.println("GET from queue");
 

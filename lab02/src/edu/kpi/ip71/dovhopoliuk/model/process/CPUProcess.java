@@ -5,18 +5,23 @@ import edu.kpi.ip71.dovhopoliuk.model.queue.CPUQueue;
 public class CPUProcess extends Thread {
 
     private final CPUQueue queue;
-    private final int lowerLimit;
-    private final int upperLimit;
+    private final int lowerIntervalLimit;
+    private final int upperIntervalLimit;
     private final int targetQuantityOfProcesses;
+    private final int lowerDurationLimit;
+    private final int upperDurationLimit;
 
-    public CPUProcess(final ThreadGroup group, final String name, final CPUQueue queue, final int lowerLimit,
-                      final int upperLimit, final int targetQuantityOfProcesses) {
+    public CPUProcess(final ThreadGroup group, final String name, final CPUQueue queue, final int lowerIntervalLimit,
+                      final int upperIntervalLimit, final int targetQuantityOfProcesses,
+                      final int lowerDurationLimit, final int upperDurationLimit) {
 
         super(group, name);
         this.queue = queue;
-        this.lowerLimit = lowerLimit;
-        this.upperLimit = upperLimit;
+        this.lowerIntervalLimit = lowerIntervalLimit;
+        this.upperIntervalLimit = upperIntervalLimit;
         this.targetQuantityOfProcesses = targetQuantityOfProcesses;
+        this.lowerDurationLimit = lowerDurationLimit;
+        this.upperDurationLimit = upperDurationLimit;
     }
 
     @Override
@@ -36,7 +41,7 @@ public class CPUProcess extends Thread {
     private void handleInterval() {
 
         try {
-            Thread.sleep(getNextInterval());
+            Thread.sleep(getNextInterval(lowerIntervalLimit, upperIntervalLimit));
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
@@ -45,11 +50,11 @@ public class CPUProcess extends Thread {
 
     private void generateNewProcess() {
 
-        queue.putProcess(new Object());
+        queue.putProcess(new Task(getNextInterval(lowerDurationLimit, upperDurationLimit)));
     }
 
-    private int getNextInterval() {
+    private int getNextInterval(final int lower, final int upper) {
 
-        return lowerLimit + (int) (Math.random() * upperLimit);
+        return lower + (int) (Math.random() * upper);
     }
 }
