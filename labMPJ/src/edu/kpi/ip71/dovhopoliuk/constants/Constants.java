@@ -15,6 +15,7 @@ public class Constants {
         public static final int INTEGER_MINUS_ONE = -1;
         public static final int INTEGER_ZERO = 0;
         public static final int INTEGER_ONE = 1;
+        public static final int INTEGER_TWO = 2;
     }
 
 }
